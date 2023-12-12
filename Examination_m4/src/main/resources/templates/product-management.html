@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        th,
+        td {
+            width: 10%;
+        }
+
+        v body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+
+        .table-responsive {
+            margin: 30px 0;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 3px;
+            min-width: 1000px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        }
+
+        .table-title {
+            padding-bottom: 15px;
+            background: #435d7d;
+            color: #fff;
+            padding: 16px 30px;
+            min-width: 100%;
+            margin: -20px -25px 10px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .table-title h2 {
+            margin: 5px 0 0;
+            font-size: 24px;
+        }
+
+        .table-title .btn-group {
+            float: right;
+        }
+
+        .table-title .btn {
+            color: #fff;
+            float: right;
+            font-size: 13px;
+            border: none;
+            min-width: 50px;
+            border-radius: 2px;
+            border: none;
+            outline: none !important;
+            margin-left: 10px;
+        }
+
+        .table-title .btn i {
+            float: left;
+            font-size: 21px;
+            margin-right: 5px;
+        }
+
+        .table-title .btn span {
+            float: left;
+            margin-top: 2px;
+        }
+
+        table.table tr th,
+        table.table tr td {
+            border-color: #e9e9e9;
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        table.table tr th:first-child {
+            width: 60px;
+        }
+
+        table.table tr th:last-child {
+            width: 100px;
+        }
+
+        table.table-striped tbody tr:nth-of-type(odd) {
+            background-color: #fcfcfc;
+        }
+
+        table.table-striped.table-hover tbody tr:hover {
+            background: #f5f5f5;
+        }
+
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        table.table td:last-child i {
+            opacity: 0.9;
+            font-size: 22px;
+            margin: 0 5px;
+        }
+
+        table.table td a {
+            font-weight: bold;
+            color: #566787;
+            display: inline-block;
+            text-decoration: none;
+            outline: none !important;
+        }
+
+        table.table td a:hover {
+            color: #2196F3;
+        }
+
+        table.table td a.edit {
+            color: #FFC107;
+        }
+
+        table.table td a.delete {
+            color: #F44336;
+        }
+
+        table.table td i {
+            font-size: 19px;
+        }
+
+        table.table .avatar {
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .pagination {
+            float: right;
+            margin: 0 0 5px;
+        }
+
+        .pagination li a {
+            border: none;
+            font-size: 13px;
+            min-width: 30px;
+            min-height: 30px;
+            color: #999;
+            margin: 0 2px;
+            line-height: 30px;
+            border-radius: 2px !important;
+            text-align: center;
+            padding: 0 6px;
+        }
+
+        .pagination li a:hover {
+            color: #666;
+        }
+
+        .pagination li.active a,
+        .pagination li.active a.page-link {
+            background: #03A9F4;
+        }
+
+        .pagination li.active a:hover {
+            background: #0397d6;
+        }
+
+        .pagination li.disabled i {
+            color: #ccc;
+        }
+
+        .pagination li i {
+            font-size: 16px;
+            padding-top: 6px
+        }
+
+        .hint-text {
+            float: left;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        /* Custom checkbox */
+        .custom-checkbox {
+            position: relative;
+        }
+
+        .custom-checkbox input[type="checkbox"] {
+            opacity: 0;
+            position: absolute;
+            margin: 5px 0 0 3px;
+            z-index: 9;
+        }
+
+        .custom-checkbox label:before {
+            width: 18px;
+            height: 18px;
+        }
+
+        .custom-checkbox label:before {
+            content: '';
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: text-top;
+            background: white;
+            border: 1px solid #bbb;
+            border-radius: 2px;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+label:after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 3px;
+            width: 6px;
+            height: 11px;
+            border: solid #000;
+            border-width: 0 3px 3px 0;
+            transform: inherit;
+            z-index: 3;
+            transform: rotateZ(45deg);
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+label:before {
+            border-color: #03A9F4;
+            background: #03A9F4;
+        }
+
+        .custom-checkbox input[type="checkbox"]:checked+label:after {
+            border-color: #fff;
+        }
+
+        .custom-checkbox input[type="checkbox"]:disabled+label:before {
+            color: #b8b8b8;
+            cursor: auto;
+            box-shadow: none;
+            background: #ddd;
+        }
+
+        /* Modal styles */
+        .modal .modal-dialog {
+            max-width: 400px;
+        }
+
+        .modal .modal-header,
+        .modal .modal-body,
+        .modal .modal-footer {
+            padding: 20px 30px;
+        }
+
+        .modal .modal-content {
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .modal .modal-footer {
+            background: #ecf0f1;
+            border-radius: 0 0 3px 3px;
+        }
+
+        .modal .modal-title {
+            display: inline-block;
+        }
+
+        .modal .form-control {
+            border-radius: 2px;
+            box-shadow: none;
+            border-color: #dddddd;
+        }
+
+        .modal textarea.form-control {
+            resize: vertical;
+        }
+
+        .modal .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+
+        .modal form label {
+            font-weight: normal;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5> <a href="./user-management.html">USER</a><a href="./category-management.html"> -
+                                    CATEGORY</a> <a href="./product-management.html"> - PRODUCT </a><a
+                                    href="./order-management.html"> - ORDER</a> </h5>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <a href="#addProductModal" class="btn btn-success" data-bs-toggle="modal"><i
+                                    class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                            <input type="text" id="searchInput" name="search" placeholder="Search...">
+                            <button type="submit" id="searchButton">Search</button>
+                            <button class="sign-out-button" onclick="logout()">Sign Out</button>
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table" id="product-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-list">
+                        <!-- Dữ liệu trong tbody sẽ được thêm bằng mã JavaScript -->
+                    </tbody>
+                </table>
+
+                <!-- <div class="clearfix">
+                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> -->
+                <ul class="pagination">
+
+                    <input type="button" class="btn btn-primary" id="previous" value="Previous">
+                    <input type="text" value="1" style=" width:30px; border: #999ede;" id="page">
+                    <input type="button" class="btn btn-primary" id="next" value="Next">
+                    <!-- <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Next</a></li> -->
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+    <div id="addProductModal" class="modal fade ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="productForm">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Product</h4>
+                        <button type="button" data-bs-toggle="modal" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" class="form-control" id="productName" name="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Product Price</label>
+                            <input type="number" class="form-control" id="productPrice" name="productPrice" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId">Category ID</label>
+                            <input type="number" class="form-control" id="categoryId" name="categoryId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="text" class="form-control" name="image" id="imageInput">
+
+                            <!-- <button type="submit">Upload File</button> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" data-bs-toggle="modal" class="btn btn-default" data-dismiss="modal"
+                            value="Cancel">
+                        <input type="submit" onClick="addProduct()" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <img src="/hinh/" alt="">
+    <div id="editProductModal" class="modal fade">
+        <div class="modal-dialog text-dark">
+            <div class="modal-content">
+                <input id="idProductEdit" hidden />
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Product</h4>
+                    <button type="button" class="close" data-bs-toggle="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="productNameEdit">Product Name</label>
+                        <input type="text" class="form-control" id="productNameEdit" name="productNameEdit" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="productPriceEdit">Product Price</label>
+                        <input type="number" class="form-control" id="productPriceEdit" name="productPriceEdit"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryIdEdit">Category ID</label>
+                        <input type="number" class="form-control" id="categoryIdEdit" name="categoryIdEdit" required />
+                    </div>
+                    <!-- <div class="form-group" enctype="multipart/form-data">
+                        <input type="file"  id="imageEdit" name="imageEdit" >
+                        <button type="submit">Upload File</button>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="imageEdit">Image</label>
+                        <input type="text" class="form-control" name="imageEdit" id="imageEdit">
+
+                        <!-- <button type="submit">Upload File</button> -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-bs-toggle="modal" value="Cancel">
+                    <input type="button" data-bs-toggle="modal" onclick="updateProduct()" class="btn btn-info"
+                        value="Save">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="deleteProductModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Product</h4>
+                        <button type="button" class="close" data-bs-toggle="modal" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete these Records?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" data-bs-toggle="modal" class="btn btn-default" data-dismiss="modal"
+                            value="Cancel">
+                        <input type="submit" onclick="deleteProduct()" data-bs-toggle="modal" class="btn btn-danger"
+                            value="Delete">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const token = localStorage.getItem("token");
+
+        $(document).ready(function () {
+            loadProductList();
+        });
+
+        function addProduct() {
+            let srcTemp = $("#imageInput").val();
+            // let img = srcTemp.slice(12);
+            let dataRequest = JSON.stringify({
+                name: $("#productName").val(),
+                price: $("#productPrice").val(),
+                categoryId: $("#categoryId").val(),
+                // image: img
+                image: srcTemp
+            });
+
+            $.ajax({
+                url: "http://localhost:8080/api/admin/product/add",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: dataRequest,
+                success: (result) => {
+                    loadProductList();
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+
+
+        function loadProductList() {
+            $.ajax({
+                url: 'http://localhost:8080/api/admin/product/show',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    displayProductList(data.data.content);
+                },
+                error: function () {
+                    alert('An error occurred while fetching data from the API.');
+                }
+            });
+        }
+
+        function displayProductList(data) {
+            let tbody = $('#product-list');
+
+            tbody.empty();
+
+            for (let i = 0; i < data.length; i++) {
+                let product = data[i];
+                let row = '<tr>' +
+                    '<td>' + product.id + '</td>' +
+                    '<td><img style="width:100px; height:120px"  src="' + product.image + '"/></td>' +
+                    '<td>' + product.name + '</td>' +
+                    '<td>' + product.price + '</td>' +
+                    '<td>' + product.category.id + '</td>' +
+                    '<td>' + product.category.name + '</td>' +
+                    '<td>' +
+                    '<button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#editProductModal" value="' + product.id + '" onclick="loadModel(this.value)"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>' +
+                    '<button type="button" class="btn btn-danger delete" data-bs-toggle="modal" href="#deleteProductModal" value="' + product.id + '" onclick="setId(this.value)" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>' +
+                    '</td>' +
+                    '</tr>';
+                tbody.append(row);
+            }
+
+
+        }
+
+
+        function loadModel(id) {
+            $.ajax({
+                url: 'http://localhost:8080/api/admin/product/getProduct/' + id,
+                type: "GET",
+                dataType: "JSON",
+                contentType: "application/json",
+                success: (data) => {
+                    showProduct(data);
+                },
+                error: () => {
+                    alert('An error occurred while fetching data from the API.');
+                }
+            });
+        }
+
+        let id;
+        function showProduct(data) {
+            console.log(data);
+            id = data.id;
+            $("#idProductEdit").val(data.id);
+            document.getElementById("productNameEdit").value = data.name;
+            document.getElementById("productPriceEdit").value = data.price;
+            document.getElementById("categoryIdEdit").value = data.category.id;
+            document.getElementById("imageEdit").value = data.image;
+        }
+
+
+        function updateProduct() {
+            let dataRequest = JSON.stringify({
+                name: $("#productNameEdit").val(),
+                price: $("#productPriceEdit").val(),
+                categoryId: $("#categoryIdEdit").val(),
+                image: $("#imageEdit").val()
+            });
+            $.ajax({
+                url: "http://localhost:8080/api/admin/product/update/" + $("#idProductEdit").val(),
+                type: "PUT",
+                dataType: "json",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: dataRequest,
+                success: (result) => {
+                    loadProductList();
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+
+        function setId(id) {
+            localStorage.setItem("id", id);
+        }
+
+        function deleteProduct() {
+
+            let id = localStorage.getItem("id");
+            $.ajax({
+                type: "DELETE",
+                url: "http://localhost:8080/api/admin/product/delete/" + id,
+                success: function () {
+                    $('#product-list').empty();
+                    loadProductList();
+                    localStorage.removeItem("id");
+
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+
+        }
+
+
+
+        function searchProducts() {
+            let name = $("#searchInput").val();
+            const page = 0;
+            const size = 5;
+            const sortBy = "id";
+
+            $.ajax({
+                url: `http://localhost:8080/api/admin/product/search?name=${name}&page=${page}&size=${size}&sortBy=${sortBy}`,
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (data.success) {
+                        console.log(data.message);
+                        console.log(data.data);
+                        displayProductList(data.data.content)
+                    } else {
+                        console.error(data.message);
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                },
+            });
+        }
+
+        document.getElementById("searchButton").addEventListener("click", searchProducts);
+
+        // showprocduct(page){
+        //     ajax
+        //     success{
+        //         setProduct()
+        //         setPaging()
+        //     }
+        // }
+
+        $("#next").on("click", () => {
+            let currentPage = parseInt($("#page").val());
+            let nextPage = currentPage + 1;
+
+            $.ajax({
+                url: 'http://localhost:8080/api/admin/product/show?page=' + nextPage,
+                method: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                success: (data) => {
+                    if (data.data.content.length > 0) {
+
+                        $("#page").val(nextPage);
+                        console.log(data.data.content);
+                        displayProductList(data.data.content);
+                    } else {
+
+                        console.log("No more pages available.");
+                    }
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        });
+
+
+        $("#previous").on("click", () => {
+            let page = parseInt($("#page").val()) - 1;
+            console.log(page)
+
+            if (page > 0) {
+
+                $("#page").val(parseInt(page))
+
+
+                $.ajax({
+                    url: 'http://localhost:8080/api/admin/product/show?page=' + page,
+                    method: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: (data) => {
+                        console.log(data.data.content);
+                        displayProductList(data.data.content);
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                })
+            }
+        })
+
+
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "http://127.0.0.1:5500/login.html";
+        }
+
+
+    </script>
+</body>
+
+</html>
